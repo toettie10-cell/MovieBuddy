@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Streaming Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #111;
+      color: #fff;
+    }
+    header {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: #222;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 22px;
+      border-radius: 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .netflix { background:#e50914; }
+    .disney { background:#113ccf; }
+    .prime { background:#00a8e1; }
+    .hbo { background:#7b3fe4; }
+    .youtube { background:#ff0000; }
+
+    .party {
+      background: #1c1c1c;
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 50px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 200px;
+      margin: 10px;
+    }
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 15px;
+      margin-top: 60px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎬 Streaming Hub</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#diensten">Diensten</a>
+    <a href="#info">Info</a>
+  </nav>
+</header>
+
+<main id="home">
+  <h2>Welkom</h2>
+  <p>Kies je streamingdienst en kijk samen met vrienden.</p>
+</main>
+
+<main id="diensten">
+  <h2>Diensten</h2>
+  <div class="services">
+    <div class="card"><h3>Netflix</h3><a class="btn netflix" href="https://www.netflix.com" target="_blank">Ga naar Netflix</a></div>
+    <div class="card"><h3>Disney+</h3><a class="btn disney" href="https://www.disneyplus.com" target="_blank">Ga naar Disney+</a></div>
+    <div class="card"><h3>Prime Video</h3><a class="btn prime" href="https://www.primevideo.com" target="_blank">Ga naar Prime Video</a></div>
+    <div class="card"><h3>HBO Max</h3><a class="btn hbo" href="https://www.max.com" target="_blank">Ga naar HBO Max</a></div>
+    <div class="card"><h3>YouTube</h3><a class="btn youtube" href="https://www.youtube.com" target="_blank">Ga naar YouTube</a></div>
+  </div>
+</main>
+
+<main id="info">
+  <h2>Samen kijken (Party Mode)</h2>
+  <div class="party">
+    <p>Maak een party-code aan en deel die met je vriend.</p>
+    <button class="btn netflix" onclick="maakCode()">Maak code</button>
+    <p id="code" style="font-size:20px; margin:15px 0;"></p>
+    <input type="text" id="inputCode" placeholder="Voer party-code in" />
+    <br />
+    <button class="btn netflix" onclick="checkCode()">Deelnemen</button>
+    <p id="result" style="margin-top:10px;"></p>
+    <p style="font-size:14px; margin-top:15px;">* Demo-functie: geen echte synchronisatie of accounts</p>
+  </div>
+</main>
+
+<footer>
+  Dit is een doorverwijssite. Log altijd in via de officiële streamingdiensten.
+</footer>
+
+<script>
+  let gemaakteCode = "";
+
+  function maakCode() {
+    gemaakteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+    document.getElementById("code").innerText = "Jouw code: " + gemaakteCode;
+    document.getElementById("result").innerText = "";
+  }
+
+  function checkCode() {
+    const invoer = document.getElementById("inputCode").value.toUpperCase();
+    if (invoer === gemaakteCode && invoer !== "") {
+      document.getElementById("result").innerText = "✅ Verbonden! Kijk samen.";
+    } else {
+      document.getElementById("result").innerText = "❌ Ongeldige code.";
+    }
+  }
+</script>
+</body>
+</html>
